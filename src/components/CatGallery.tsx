@@ -1,5 +1,5 @@
 import {CardGrid} from "./CardGrid.tsx";
-import {RefObject, useEffect, useState} from "react";
+import {LegacyRef, useEffect, useState} from "react";
 import {useInfiniteQuery, useQueryClient} from "react-query";
 import {catService} from "../entities/cat/cat.service.ts";
 import {useInView} from "react-intersection-observer";
@@ -49,7 +49,7 @@ export const CatGallery = () => {
     return (
         <div>
             <CardGrid data={data?.pages.flat()} isLoading={isLoading}/>
-            <div ref={ref as RefObject<HTMLDivElement>} className="flex h-24 items-center justify-center">
+            <div ref={ref as LegacyRef<HTMLDivElement>} className="flex h-24 items-center justify-center">
                 {
                     isFetchingNextPage && (
                         <img src="../../public/cat.gif" alt="loader" className="w-20"/>

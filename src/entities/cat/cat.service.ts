@@ -14,7 +14,7 @@ class CatService {
         return await response.json();
     }
 
-    async getCats(page: number = 0, limit: number = 20, breed?: string): Promise<ICat[]> {
+    async getCats(page: number = 0, limit: number = 20, breed?: string | null): Promise<ICat[]> {
         const response = await fetch(`${this.url}/images/search?has_breeds=true&page=${page}&limit=${limit}${breed ? `&breed_ids=${breed}` : ''}`, {
             headers: {
                 'x-api-key': API_KEY

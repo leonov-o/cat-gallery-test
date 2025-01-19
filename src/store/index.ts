@@ -5,16 +5,17 @@ import {ICat, ICatBreed} from "../entities/cat/cat.types.ts";
 
 interface IUserState {
     breeds: ICatBreed[];
-    favourites: string[];
+    favourites: ICat[];
     filters: {
         breed: string | null;
     };
     setBreeds: (breeds: ICatBreed[]) => void;
-    setFilters: (field, value) => void;
+    setFilters: (field: string, value: string) => void;
     toggleFavourite: (item: ICat) => void;
 }
 
 export const useUserStore = create<IUserState>()(immer(persist((set) => ({
+    breeds: [],
     favourites: [],
     filters: {
         breed: null
@@ -28,7 +29,7 @@ export const useUserStore = create<IUserState>()(immer(persist((set) => ({
 
     setFilters: (field, value) => {
         set((state) => {
-            state.filters[field] = value;
+            state.filters[field as keyof IUserState['filters']] = value;
         });
     },
 

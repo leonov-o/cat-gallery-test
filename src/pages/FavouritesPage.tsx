@@ -1,4 +1,3 @@
-import React from 'react';
 import {useUserStore} from "../store";
 import {CardGrid} from "../components/CardGrid.tsx";
 

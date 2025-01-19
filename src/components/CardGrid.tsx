@@ -4,7 +4,7 @@ import {ICat} from "../entities/cat/cat.types.ts";
 import React from "react";
 
 interface ICardGridProps {
-    data: ICat[];
+    data: ICat[] | undefined;
     isLoading: boolean;
 }
 

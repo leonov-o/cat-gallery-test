@@ -2,7 +2,7 @@ import React, {RefObject, useEffect, useRef, useState} from 'react';
 
 interface IOption {
     label: string;
-    value: string
+    value: string | null;
 }
 
 interface IBreedFilterProps {
@@ -11,7 +11,7 @@ interface IBreedFilterProps {
 }
 
 export const BreedFilter: React.FC<IBreedFilterProps> = ({options, onSelect}) => {
-    const [filteredOptions, setFilteredOptions] = useState([]);
+    const [filteredOptions, setFilteredOptions] = useState<IOption[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>();
@@ -24,7 +24,7 @@ export const BreedFilter: React.FC<IBreedFilterProps> = ({options, onSelect}) =>
         const handleClickOutside = (event: MouseEvent) => {
             if (
                 dropdownRef.current &&
-                !dropdownRef.current.contains(event.target)
+                !dropdownRef.current.contains(event.target as Node)
             ) {
                 setIsOpen(false);
             }
@@ -47,7 +47,7 @@ export const BreedFilter: React.FC<IBreedFilterProps> = ({options, onSelect}) =>
     };
 
     const handleOptionClick = (option: IOption) => {
-        onSelect(option.value);
+        onSelect(option.value || '');
         setSearchTerm(option.label);
         setIsOpen(false);
     };
