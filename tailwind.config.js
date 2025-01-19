@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      "atma": ["Atma", "sans-serif"],
+    }
   },
   plugins: [],
 }
