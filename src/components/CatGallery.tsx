@@ -52,7 +52,7 @@ export const CatGallery = () => {
             <div ref={ref as LegacyRef<HTMLDivElement>} className="flex h-24 items-center justify-center">
                 {
                     isFetchingNextPage && (
-                        <img src="../../public/cat.gif" alt="loader" className="w-20"/>
+                        <img src="cat.gif" alt="loader" className="w-20"/>
                     )
                 }
             </div>

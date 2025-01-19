@@ -8,7 +8,7 @@ export const Header = () => {
             <div className="flex h-20 items-center justify-between px-8">
                 <div className="flex cursor-pointer items-end transition hover:text-orange-500">
                     <div className="size-12">
-                        <img src="../../public/logo.png" alt="logo"/>
+                        <img src="logo.png" alt="logo"/>
                     </div>
                     <NavLink to="" className="ml-2 font-atma text-2xl font-medium">
                         Cat Gallery
