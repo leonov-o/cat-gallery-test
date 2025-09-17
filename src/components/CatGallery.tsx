@@ -12,7 +12,7 @@ export const CatGallery = () => {
     const [page, setPage] = useState(0);
 
     const queryClient = useQueryClient();
-    const {data, isLoading, fetchNextPage, isFetchingNextPage} = useInfiniteQuery({
+    const {data, isLoading, error, fetchNextPage, isFetchingNextPage} = useInfiniteQuery({
         queryKey: ['cats', filters.breed],
         queryFn: () => catService.getCats(page, 20, filters.breed),
         getNextPageParam: () => page,
@@ -36,7 +36,7 @@ export const CatGallery = () => {
     const {ref, inView} = useInView();
 
     useEffect(() => {
-        if (inView) {
+        if (inView && !error) {
             fetchNextPage();
             setPage(page => page + 1)
         }
@@ -48,6 +48,7 @@ export const CatGallery = () => {
 
     return (
         <div>
+            {error instanceof Error ? <p className="mt-8 text-center text-2xl font-bold text-red-500">{error.message}</p> : null}
             <CardGrid data={data?.pages.flat()} isLoading={isLoading}/>
             <div ref={ref as LegacyRef<HTMLDivElement>} className="flex h-24 items-center justify-center">
                 {
